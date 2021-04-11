@@ -20,10 +20,13 @@ def on_connect(client, userdata, flags, rc):
 
 
 def on_message(client, userdata, message):
+	
     msg = time.strftime("%B %d,%Y at %H:%M%p Mronabeja Temperature ", time.gmtime()) + message.payload.decode("utf-8") +"\n"
-    fp = open("Lecture_capteurs.txt", "a")
+    fp = open("Lecture_capteur_MQTT.txt", "a")
     fp.write(msg)
+
     fp.close()
+
     print(msg)
 
 
