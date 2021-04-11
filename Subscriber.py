@@ -1,5 +1,6 @@
 # Subscriber
 
+import time
 import paho.mqtt.client as mqtt
 
 
@@ -15,8 +16,16 @@ def on_connect(client, userdata, flags, rc):
 	client.subscribe(topic)
 
 
+
+
+
 def on_message(client, userdata, message):
-    print(message.payload.decode("utf-8"))
+    msg = time.strftime("%B %d,%Y at %H:%M%p Mronabeja Temperature ", time.gmtime()) + message.payload.decode("utf-8") +"\n"
+    fp = open("Lecture_capteurs.txt", "a")
+    fp.write(msg)
+    fp.close()
+    print(msg)
+
 
 while True:
 	client.on_connect = on_connect

@@ -32,7 +32,7 @@ while True:
     client.check_msg()
     if (time.time() - last_message) > message_interval:
       
-      msg = b'Bonjour de Mayotte/Kani-Keli/Mronabja #%s' % S.Read()
+      msg = b'Bonjour de Mayotte/Kani-Keli/Mronabja #%s Température: ' % (counter, S.Read())
       print(msg)
       client.publish(topic_pub, msg)
       last_message = time.time()
